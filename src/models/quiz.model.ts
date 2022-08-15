@@ -25,4 +25,12 @@ export class Quiz extends modelMixIn<TQuiz>('quiz', quizSchema) {
   async getQuizzes() {
     return this.model.find({});
   }
+
+  async getQuiz(id: string) {
+    return this.model.findById(id);
+  }
+
+  async getAnswers(_id: string) {
+    return this.model.findOne({ _id });
+  }
 }

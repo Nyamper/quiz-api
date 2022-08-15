@@ -4,23 +4,15 @@ import { z } from 'zod';
 
 const quizSchema = z
   .object({
-    _id: z.string(),
     category: z.string(),
     quizName: z.string(),
     description: z.string(),
     cardImageUrl: z.string(),
     questions: z.array(
       z.object({
-        id: z.string(),
-        title: z.string(),
-        description: z.string(),
-        answers: z.array(
-          z.object({
-            id: z.string(),
-            title: z.string(),
-            isCorrect: z.boolean(),
-          })
-        ),
+        question: z.string(),
+        answers: z.array(z.string()),
+        correctAnswerIndex: z.number(),
       })
     ),
   })
@@ -30,6 +22,7 @@ class QuizController {
   constructor(private quizService: QuizService) {}
   async createQuiz(req: Request, res: Response) {
     try {
+      await quizSchema.parse(req.body);
       const quiz = await this.quizService.addQuiz(req.body);
       return res.status(200).json(quiz);
     } catch (error) {
@@ -57,6 +50,16 @@ class QuizController {
       return res.status(400).json({ message: 'error' });
     }
   }
+
+  // async checkAnswers(req: Request, res: Response) {
+  //   try {
+  //     const quiz = await this.quizService.checkAnswers(req.body);
+  //     return res.status(200).json(quiz);
+  //   } catch (error) {
+  //     console.log(error);
+  //     return res.status(400).json({ message: 'error' });
+  //   }
+  // }
 }
 
 export default QuizController;

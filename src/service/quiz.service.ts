@@ -4,7 +4,10 @@ import { TQuiz } from '../types/types';
 class QuizService {
   constructor(private quiz: Quiz = new Quiz()) {}
   public async addQuiz(params: TQuiz) {
-    // check if quiz exist
+    const quiz = await this.quiz.model.findOne({ quizName: params.quizName });
+    if (quiz) {
+      throw new Error('Quiz already exists');
+    }
     const newQuiz = new this.quiz.model(params);
     await newQuiz.save();
     return newQuiz;
@@ -24,10 +27,14 @@ class QuizService {
   }
 
   public async getQuiz(id: string) {
-    const data = this.quiz.model.findById(id);
-    console.log(data);
-    return data;
+    return await this.quiz.getQuiz(id);
   }
+
+  // public async checkAnswers(params: TQuiz) {
+  //   const answers = this.quiz.getAnswers(params._id);
+
+  //   return data;
+  // }
 }
 
 export default QuizService;

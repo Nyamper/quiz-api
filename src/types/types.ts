@@ -7,6 +7,16 @@ export type TUser = {
   token?: string;
 };
 
+export type TLeaderboard = {
+  _id?: string;
+  username: string;
+  category: string;
+  quizName: string;
+  time: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+};
+
 export type TUserInput = {
   username: string;
   password: string;
