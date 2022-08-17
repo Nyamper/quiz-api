@@ -26,7 +26,7 @@ export type TQuizQuestion = {
   _id?: string;
   question: string;
   answers: Array<string>;
-  correctAnswerIndex: number;
+  correctAnswerIndex?: number;
 };
 
 export type TQuiz = {
@@ -36,4 +36,10 @@ export type TQuiz = {
   description: string;
   cardImageUrl: string;
   questions: Array<TQuizQuestion>;
+};
+
+export type Context = {
+  token?: string;
+  user?: TUser;
+  // user?: User;
 };

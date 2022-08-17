@@ -2,7 +2,17 @@ import express from 'express';
 import mongoose from 'mongoose';
 import router from './routes';
 
+import { Context } from './types/types';
+
 const { PORT, MONGO_URI } = process.env;
+
+declare global {
+  namespace Express {
+    interface Request {
+      context?: Context;
+    }
+  }
+}
 
 const app = express();
 

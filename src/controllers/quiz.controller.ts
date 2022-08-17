@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import QuizService from '../service/quiz.service';
+import QuizService from '../services/quiz.service';
 import { z } from 'zod';
 
 const quizSchema = z
@@ -44,6 +44,18 @@ class QuizController {
   async getQuiz(req: Request, res: Response) {
     try {
       const quiz = await this.quizService.getQuiz(req.params.id);
+      console.log(quiz);
+      return res.status(200).json(quiz);
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ message: 'error' });
+    }
+  }
+
+  async getQuizCorrectAnswers(req: Request, res: Response) {
+    try {
+      const quiz = await this.quizService.getQuizAnswers(req.params.id);
+      console.log(quiz);
       return res.status(200).json(quiz);
     } catch (error) {
       console.log(error);

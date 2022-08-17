@@ -1,7 +1,7 @@
 import express from 'express';
 
 import LeaderboardController from '../controllers/leaderboard.controller';
-import LeaderboardService from '../service/leaderboard.service';
+import LeaderboardService from '../services/leaderboard.service';
 
 const router = express.Router();
 

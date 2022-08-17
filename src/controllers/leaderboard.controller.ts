@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import LeaderboardService from '../service/leaderboard.service';
+import LeaderboardService from '../services/leaderboard.service';
 import { z } from 'zod';
 
 const leaderboardSchema = z.object({
