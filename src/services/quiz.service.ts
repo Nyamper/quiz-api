@@ -58,33 +58,30 @@ class QuizService {
     if (!quiz) {
       throw new Error('Quiz not found');
     }
-    return {
-      questions: quiz.questions.map((question) => {
-        return {
-          _id: question._id,
-          question: question.question,
-          answers: question.answers,
-          correctAnswerIndex: question.correctAnswerIndex,
-        };
-      }),
-    };
+    return quiz.questions.map((question) => {
+      return {
+        _id: question._id,
+        question: question.question,
+        answers: question.answers,
+        correctAnswerIndex: question.correctAnswerIndex,
+      };
+    });
   }
 
-  // public async checkAnswers(params: TCheck) {
-  //   const quiz = await this.quiz.getQuiz(params.id);
+  // public async getQuizAnswers(id: string) {
+  //   const quiz = await this.quiz.getQuiz(id);
   //   if (!quiz) {
-  //     return 'Quiz not found';
+  //     throw new Error('Quiz not found');
   //   }
-  //   const answers = params.answers.map((answer, index) => {
-  //     return {
-  //       answer,
-  //       correct: quiz.questions[index].correctAnswerIndex === index,
-  //     };
-  //   });
   //   return {
-  //     answers,
-  //     correct: answers.filter((answer) => answer.correct).length,
-  //     total: answers.length,
+  //     questions: quiz.questions.map((question) => {
+  //       return {
+  //         _id: question._id,
+  //         question: question.question,
+  //         answers: question.answers,
+  //         correctAnswerIndex: question.correctAnswerIndex,
+  //       };
+  //     }),
   //   };
   // }
 }

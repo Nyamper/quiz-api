@@ -62,16 +62,6 @@ class QuizController {
       return res.status(400).json({ message: 'error' });
     }
   }
-
-  // async checkAnswers(req: Request, res: Response) {
-  //   try {
-  //     const quiz = await this.quizService.checkAnswers(req.body);
-  //     return res.status(200).json(quiz);
-  //   } catch (error) {
-  //     console.log(error);
-  //     return res.status(400).json({ message: 'error' });
-  //   }
-  // }
 }
 
 export default QuizController;
