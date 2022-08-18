@@ -7,7 +7,7 @@ import { TQuizQuestion, TQuiz } from '../types/types';
 const quizQuestionsArraySchema = new Schema<TQuizQuestion>({
   question: { type: String, require: true },
   answers: { type: [String], require: true },
-  correctAnswerIndex: { type: Number, require: true },
+  correctAnswer: { type: String, require: true },
 });
 
 const quizSchema = new Schema<TQuiz>(

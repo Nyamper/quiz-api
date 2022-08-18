@@ -12,7 +12,7 @@ const quizSchema = z
       z.object({
         question: z.string(),
         answers: z.array(z.string()),
-        correctAnswerIndex: z.number(),
+        correctAnswer: z.string(),
       })
     ),
   })

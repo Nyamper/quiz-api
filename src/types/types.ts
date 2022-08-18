@@ -26,7 +26,7 @@ export type TQuizQuestion = {
   _id?: string;
   question: string;
   answers: Array<string>;
-  correctAnswerIndex?: number;
+  correctAnswer?: string;
 };
 
 export type TQuiz = {

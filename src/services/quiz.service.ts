@@ -1,11 +1,6 @@
 import { Quiz } from '../models/quiz.model';
 import { TQuiz } from '../types/types';
 
-// type TCheck = {
-//   id: string;
-//   answers: [string];
-// };
-
 class QuizService {
   constructor(private quiz: Quiz = new Quiz()) {}
 
@@ -63,27 +58,10 @@ class QuizService {
         _id: question._id,
         question: question.question,
         answers: question.answers,
-        correctAnswerIndex: question.correctAnswerIndex,
+        correctAnswer: question.correctAnswer,
       };
     });
   }
-
-  // public async getQuizAnswers(id: string) {
-  //   const quiz = await this.quiz.getQuiz(id);
-  //   if (!quiz) {
-  //     throw new Error('Quiz not found');
-  //   }
-  //   return {
-  //     questions: quiz.questions.map((question) => {
-  //       return {
-  //         _id: question._id,
-  //         question: question.question,
-  //         answers: question.answers,
-  //         correctAnswerIndex: question.correctAnswerIndex,
-  //       };
-  //     }),
-  //   };
-  // }
 }
 
 export default QuizService;
