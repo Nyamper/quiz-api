@@ -32,20 +32,25 @@ class QuizService {
     if (!quiz) {
       throw new Error('Quiz not found');
     }
-    return {
+    const noCorrectAnswers = {
       category: quiz.category,
-      quiz: quiz.quizName,
+      quizName: quiz.quizName,
       id: quiz._id,
       description: quiz.description,
       cardImageUrl: quiz.cardImageUrl,
       questions: quiz.questions.map((question) => {
         return {
-          _id: question._id,
+          id: question._id,
           question: question.question,
-          answers: question.answers,
+          answers: this.shaffleAnswers(question.answers),
         };
       }),
     };
+    return noCorrectAnswers;
+  }
+
+  public shaffleAnswers(answers: string[]) {
+    return answers.sort(() => Math.random() - 0.5);
   }
 
   public async getQuizAnswers(id: string) {
@@ -55,7 +60,7 @@ class QuizService {
     }
     return quiz.questions.map((question) => {
       return {
-        _id: question._id,
+        id: question._id,
         question: question.question,
         answers: question.answers,
         correctAnswer: question.correctAnswer,
