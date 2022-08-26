@@ -3,10 +3,9 @@ import LeaderboardService from '../services/leaderboard.service';
 import { z } from 'zod';
 
 const leaderboardSchema = z.object({
+  id: z.string(),
+  spentTime: z.number(),
   username: z.string(),
-  category: z.string(),
-  quizName: z.string(),
-  time: z.number(),
 });
 
 class LeaderboardController {
@@ -19,7 +18,6 @@ class LeaderboardController {
       );
       return res.status(200).json(leaderboard);
     } catch (error) {
-      console.log(error);
       return res.status(400).json({ message: 'error' });
     }
   }
@@ -29,7 +27,6 @@ class LeaderboardController {
       const leaderboard = await this.leaderboardService.getLeaderboard();
       return res.status(200).json(leaderboard);
     } catch (error) {
-      console.log(error);
       return res.status(400).json({ message: 'error' });
     }
   }

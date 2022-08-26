@@ -17,6 +17,12 @@ export type TLeaderboard = {
   updatedAt?: Date;
 };
 
+export type TLeaderBoardPartial = {
+  id: string;
+  spentTime: number;
+  username: string | null;
+};
+
 export type TUserInput = {
   username: string;
   password: string;
@@ -41,5 +47,4 @@ export type TQuiz = {
 export type Context = {
   token?: string;
   user?: TUser;
-  // user?: User;
 };

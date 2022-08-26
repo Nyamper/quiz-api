@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import router from './routes';
+import accessTokenMiddleware from './middlewares/accessToken.middleware';
 
 import { Context } from './types/types';
 
@@ -19,7 +20,7 @@ const app = express();
 app.use(express.urlencoded());
 app.use(express.json());
 
-app.use('/api', router);
+app.use('/api', accessTokenMiddleware, router);
 
 app.use('/', (req, res) => {
   res.send('Hello World');

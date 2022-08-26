@@ -26,7 +26,6 @@ class QuizController {
       const quiz = await this.quizService.addQuiz(req.body);
       return res.status(200).json(quiz);
     } catch (error) {
-      console.log(error);
       return res.status(400).json({ message: 'error' });
     }
   }
@@ -36,7 +35,6 @@ class QuizController {
       const quizzes = await this.quizService.getAllQuizzes();
       return res.status(200).json(quizzes);
     } catch (error) {
-      console.log(error);
       return res.status(400).json({ message: 'error' });
     }
   }
@@ -44,10 +42,8 @@ class QuizController {
   async getQuiz(req: Request, res: Response) {
     try {
       const quiz = await this.quizService.getQuiz(req.params.id);
-      console.log(quiz);
       return res.status(200).json(quiz);
     } catch (error) {
-      console.log(error);
       return res.status(400).json({ message: 'error' });
     }
   }
@@ -55,10 +51,8 @@ class QuizController {
   async getQuizCorrectAnswers(req: Request, res: Response) {
     try {
       const quiz = await this.quizService.getQuizAnswers(req.params.id);
-      console.log(quiz);
       return res.status(200).json(quiz);
     } catch (error) {
-      console.log(error);
       return res.status(400).json({ message: 'error' });
     }
   }

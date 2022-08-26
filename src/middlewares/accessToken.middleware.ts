@@ -5,12 +5,13 @@ function accessTokenMiddleware(
   _res: Response,
   next: NextFunction
 ) {
-  const token = req.headers['Authorization'];
+  const token = req.headers.authorization?.split(' ')[1];
   if (token) {
     req.context = {
       token: String(token),
     };
   }
+
   next();
 }
 
