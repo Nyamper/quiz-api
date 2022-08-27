@@ -1,5 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 import AuthService from '../services/auth.service';
+import jwt from 'jsonwebtoken';
+
+declare module 'jsonwebtoken' {
+  export interface UserIDJwtPayload extends jwt.JwtPayload {
+    userId: string;
+  }
+}
 
 async function isAuthMiddleware(
   req: Request,
@@ -12,7 +19,9 @@ async function isAuthMiddleware(
 
   try {
     const service = new AuthService();
-    const decodedToken = service.verifyToken(req.context.token);
+    const decodedToken = <jwt.UserIDJwtPayload>(
+      service.verifyToken(req.context.token)
+    );
     const user = await service.findUserById(decodedToken.id);
     if (!user) {
       return res.status(401).send({ auth: false, message: 'User not found.' });

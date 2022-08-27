@@ -55,7 +55,7 @@ class AuthService {
     }
   }
 
-  public verifyToken(token: string): any {
+  public verifyToken(token: string) {
     try {
       if (!process.env.JWT_SECRET) {
         throw new Error('JWT_SECRET is not defined');
